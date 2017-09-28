@@ -26,7 +26,7 @@
                 <p:outputLabel for="console" value="EPS:" />
                 <p:selectOneMenu id="console" value="#{HistorialPacientes.epsCliente}" style="width:125px">
                     <f:selectItem itemLabel="Seleccione una EPS" itemValue="" />
-                    <f:selectItems value ="#{HistorialPacientes.epsRegistradas}" var="epsCliente" itemValue="#{eps}" itemLabel="#{console.nombre}"/>
+                    <f:selectItems value ="#{HistorialPacientes.epsRegistradas}" var="epsCliente" itemValue="#{epsCliente.nombre}" itemLabel="#{epsCliente.nombre}"/>
                 </p:selectOneMenu>
                 
                 <p:commandButton value="Enviar" id="nonAjax" actionListener="#{HistorialPacientes.registrarPaciente()}" ajax="false" update="Display" />
@@ -60,9 +60,6 @@
                 </f:facet>
                 </p:dataTable>
             </h:form>
-               
-                
-                
             </h:panelGrid>
         </h:form>
     </h:body>

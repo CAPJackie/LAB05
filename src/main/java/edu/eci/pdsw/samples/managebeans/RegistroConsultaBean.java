@@ -101,6 +101,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setTipoIdPaciente(String tipoIdPaciente) {
         this.tipoIdPaciente = tipoIdPaciente;
+        System.out.println(tipoIdPaciente);
     }
 
     public String getNombrePaciente() {
@@ -109,6 +110,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setNombrePaciente(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
+        System.out.println(nombrePaciente);
     }
 
     public Date getFechaNacimientoCliente() {
@@ -117,6 +119,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setFechaNacimientoCliente(Date fechaNacimientoCliente) {
         this.fechaNacimientoCliente = fechaNacimientoCliente;
+        System.out.println(fechaNacimientoCliente);
     }
 
     public Eps getEpsCliente() {
@@ -125,6 +128,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setEpsCliente(Eps epsCliente) {
         this.epsCliente = epsCliente;
+        System.out.println(epsCliente);
     }
     
     
@@ -134,6 +138,7 @@ public class RegistroConsultaBean implements Serializable {
     
     public void setIdPaciente(int idPaciente){
         this.idPaciente = idPaciente;
+        System.out.println(idPaciente);
     }
     
     
