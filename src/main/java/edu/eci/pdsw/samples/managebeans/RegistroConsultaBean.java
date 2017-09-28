@@ -6,6 +6,8 @@
 package edu.eci.pdsw.samples.managebeans;
 
 
+import edu.eci.pdsw.samples.entities.Paciente;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
 
@@ -27,11 +29,20 @@ import javax.faces.bean.SessionScoped;
 public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
-
     
 
     public RegistroConsultaBean() {
     }
+    
+    public void registrarCliente() throws ExcepcionServiciosPacientes{
+        servicepacientes.registrarNuevoPaciente(new Paciente());
+    }
+    
+    public ServiciosPacientes getServicePacientes(){
+        return servicepacientes;
+    }
+    
+    
 
     public void showMessage(String estado, String mensaje) {
         FacesMessage message;

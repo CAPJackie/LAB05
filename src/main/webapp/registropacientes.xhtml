@@ -5,5 +5,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
+        <h:form>
+            <p:growl id="msgs" showDetail="true" />
+            
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel value="ID:" for="acId" />
+                <p:autoComplete id="acId" value="#{RegistroConsultaBean.servicepacientes.pacientes}" completeMethod="#{RegistroConsultaBean.servicepacientes.pacientes.id}" />
+            </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
