@@ -6,12 +6,14 @@
 package edu.eci.pdsw.samples.managebeans;
 
 
+import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 
@@ -30,8 +32,54 @@ public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
     
+    private int idPaciente;
+    private String tipoIdPaciente;
+    private String nombrePaciente;
+    private Date fechaNacimientoCliente;
+    private Eps epsCliente;
+
+    public String getTipoIdPaciente() {
+        return tipoIdPaciente;
+    }
+
+    public void setTipoIdPaciente(String tipoIdPaciente) {
+        this.tipoIdPaciente = tipoIdPaciente;
+    }
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public Date getFechaNacimientoCliente() {
+        return fechaNacimientoCliente;
+    }
+
+    public void setFechaNacimientoCliente(Date fechaNacimientoCliente) {
+        this.fechaNacimientoCliente = fechaNacimientoCliente;
+    }
+
+    public Eps getEpsCliente() {
+        return epsCliente;
+    }
+
+    public void setEpsCliente(Eps epsCliente) {
+        this.epsCliente = epsCliente;
+    }
+    
 
     public RegistroConsultaBean() {
+    }
+    
+    public int getIdPaciente(){
+        return idPaciente;
+    }
+    
+    public void setIdPaciente(int idPaciente){
+        this.idPaciente = idPaciente;
     }
     
     public void registrarCliente() throws ExcepcionServiciosPacientes{
@@ -40,6 +88,10 @@ public class RegistroConsultaBean implements Serializable {
     
     public ServiciosPacientes getServicePacientes(){
         return servicepacientes;
+    }
+    
+    public void registrarPaciente() throws ExcepcionServiciosPacientes{
+        servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, epsCliente));
     }
     
     

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<html xmlns="http://www.w3c.org/1999/xhtml "
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -9,8 +9,14 @@
             <p:growl id="msgs" showDetail="true" />
             
             <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel value="ID:" for="acId" />
-                <p:autoComplete id="acId" value="#{HistorialPacientes.servicePacientes.consultarPacientes}" completeMethod="#{HistorialPacientes.servicePacientes.consultarPacientes()}" />
+                <p:outputLabel value="ID:"/>
+                <p:inputText  value = "#{HistorialPacientes.idPaciente}"/>
+                
+                <p:outputLabel value="TipoId:"/>
+                <p:inputText  value = "#{HistorialPacientes.tipoIdPaciente}"/>
+                
+                <p:outputLabel value="Nombre:"/>
+                <p:inputText  value = "#{HistorialPacientes.nombrePaciente}"/>
             </h:panelGrid>
         </h:form>
     </h:body>
