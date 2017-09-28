@@ -63,12 +63,12 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
         
         pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
+        //System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
     }
 
     @Override
     public void agregarConsultaPaciente(int idPaciente, String tipoid, Consulta consulta) throws ExcepcionServiciosPacientes {
-        System.out.println("add:"+new Tupla<>(idPaciente, tipoid));
+        //System.out.println("add:"+new Tupla<>(idPaciente, tipoid));
         Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
         if (paciente != null) {
             consulta.setId(idconsulta);
