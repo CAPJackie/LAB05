@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.managebeans;
 
 
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
@@ -15,7 +16,7 @@ import edu.eci.pdsw.samples.services.ServiciosPacientes;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 
 import org.primefaces.context.RequestContext;
@@ -32,7 +33,7 @@ import javax.faces.bean.SessionScoped;
 public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
-    
+    private Paciente pacienteActual= new Paciente(3, "CC", "Pedro Martinez", java.sql.Date.valueOf("1956-05-01"), new Eps("Sura", "798273892-0"));
     private int idPaciente;
     private String tipoIdPaciente;
     private String nombrePaciente;
@@ -49,6 +50,51 @@ public class RegistroConsultaBean implements Serializable {
     }
 
 
+    private String resumenCitaNueva;
+    private Date fechaYHoraNueva;
+    private long costoNuevo;    
+    
+    
+    public Paciente getPacienteActual(){    
+        return pacienteActual;
+    }
+
+    public Date getFechaYHoraNueva() {
+        return fechaYHoraNueva;
+    }
+
+    public long getCostoNuevo() {
+        return costoNuevo;
+    }
+
+    public void setFechaYHoraNueva(Date fechaYHoraNueva) {
+        this.fechaYHoraNueva = fechaYHoraNueva;
+    }
+
+    public void setCostoNuevo(long costoNuevo) {
+        this.costoNuevo = costoNuevo;
+    }
+    
+    
+    
+    public Set<Consulta> getCitasPaciente(Paciente p){
+        return p.getConsultas();
+    }
+    
+    public String getResumenCitaNueva(){
+        return resumenCitaNueva;
+    }
+
+    public void setPacienteActual(Paciente PacienteActual) {
+        this.pacienteActual = PacienteActual;
+    }
+
+    public void setResumenCitaNueva(String resumenCitaNueva) {
+        this.resumenCitaNueva = resumenCitaNueva;
+    }
+    
+    
+    
     public String getTipoIdPaciente() {
         return tipoIdPaciente;
     }
@@ -99,7 +145,9 @@ public class RegistroConsultaBean implements Serializable {
         servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, new Eps("Compensar","12")));
     }
     
-    
+    public void registrarCitaPaciente() throws ExcepcionServiciosPacientes{
+        servicepacientes.agregarConsultaPaciente(pacienteActual.getId(), pacienteActual.getTipoId(), new Consulta(fechaYHoraNueva, resumenCitaNueva, costoNuevo ));
+    }
 
     public void showMessage(String estado, String mensaje) {
         FacesMessage message;
