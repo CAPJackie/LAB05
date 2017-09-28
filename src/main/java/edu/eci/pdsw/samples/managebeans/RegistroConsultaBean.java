@@ -14,6 +14,7 @@ import edu.eci.pdsw.samples.services.ServiciosPacientes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 
@@ -37,6 +38,16 @@ public class RegistroConsultaBean implements Serializable {
     private String nombrePaciente;
     private Date fechaNacimientoCliente;
     private Eps epsCliente;
+    
+
+
+    public ServiciosPacientes getServicepacientes() {
+        return servicepacientes;
+    }
+    
+    public RegistroConsultaBean() throws ExcepcionServiciosPacientes{
+    }
+
 
     public String getTipoIdPaciente() {
         return tipoIdPaciente;
@@ -70,9 +81,6 @@ public class RegistroConsultaBean implements Serializable {
         this.epsCliente = epsCliente;
     }
     
-
-    public RegistroConsultaBean() {
-    }
     
     public int getIdPaciente(){
         return idPaciente;
@@ -82,16 +90,13 @@ public class RegistroConsultaBean implements Serializable {
         this.idPaciente = idPaciente;
     }
     
-    public void registrarCliente() throws ExcepcionServiciosPacientes{
-        servicepacientes.registrarNuevoPaciente(new Paciente());
-    }
     
-    public ServiciosPacientes getServicePacientes(){
-        return servicepacientes;
+    public List<Eps> getEpsRegistradas() throws ExcepcionServiciosPacientes{
+        return servicepacientes.obtenerEPSsRegistradas();
     }
     
     public void registrarPaciente() throws ExcepcionServiciosPacientes{
-        servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, epsCliente));
+        servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, new Eps("Compensar","12")));
     }
     
     

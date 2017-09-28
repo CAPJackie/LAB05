@@ -39,13 +39,13 @@ import java.util.logging.Logger;
 public class ServiciosPacientesMock implements ServiciosPacientes {
 
     private final Map<Tupla<Integer, String>, Paciente> pacientes;
-    private final List<Eps> epsregistradas;
+    private List<Eps> epsregistradas;
     private int idconsulta = 1;
 
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas = new LinkedList<>();
-        //cargarDatosEstaticos(pacientes);
+        cargarDatosEstaticos(pacientes);
     }
 
     @Override
