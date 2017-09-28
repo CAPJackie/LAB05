@@ -79,9 +79,11 @@ public class ServiciosPacientesTest {
     //CF1:
     @Test
     public void testRegistrarNuevoPaciente() throws ExcepcionServiciosPacientes{
-        ServiciosPacientesMock servicioPacientes= new ServiciosPacientesMock();
+        ServiciosPacientes servicioPacientes= new ServiciosPacientesMock();
         int sizeClientes= servicioPacientes.consultarPacientes().size();
-        Paciente pac=new Paciente(); 
+        Paciente pac=new Paciente();
+        pac.setId(101234455);
+        pac.setTipoId("Cedula de ciudadania");
         servicioPacientes.registrarNuevoPaciente(pac);
         assertEquals(sizeClientes+1,servicioPacientes.consultarPacientes().size());
     }

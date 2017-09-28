@@ -10,7 +10,7 @@
             
             <h:panelGrid columns="2" cellpadding="5">
                 <p:outputLabel value="ID:" for="acId" />
-                <p:autoComplete id="acId" value="#{RegistroConsultaBean.servicepacientes.pacientes}" completeMethod="#{RegistroConsultaBean.servicepacientes.pacientes.id}" />
+                <p:autoComplete id="acId" value="#{HistorialPacientes.servicePacientes.consultarPacientes}" completeMethod="#{HistorialPacientes.servicePacientes.consultarPacientes()}" />
             </h:panelGrid>
         </h:form>
     </h:body>
