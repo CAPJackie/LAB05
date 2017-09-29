@@ -38,7 +38,10 @@ public class RegistroConsultaBean implements Serializable {
     private String tipoIdPaciente;
     private String nombrePaciente;
     private Date fechaNacimientoCliente;
-    private Eps epsCliente;
+    private String epsCliente;
+    private String resumenCitaNueva;
+    private Date fechaYHoraNueva;
+    private long costoNuevo;  
     
 
 
@@ -49,10 +52,6 @@ public class RegistroConsultaBean implements Serializable {
     public RegistroConsultaBean() throws ExcepcionServiciosPacientes{
     }
 
-
-    private String resumenCitaNueva;
-    private Date fechaYHoraNueva;
-    private long costoNuevo;    
     
     
     public Paciente getPacienteActual(){    
@@ -101,7 +100,6 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setTipoIdPaciente(String tipoIdPaciente) {
         this.tipoIdPaciente = tipoIdPaciente;
-        System.out.println(tipoIdPaciente);
     }
 
     public String getNombrePaciente() {
@@ -110,7 +108,6 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setNombrePaciente(String nombrePaciente) {
         this.nombrePaciente = nombrePaciente;
-        System.out.println(nombrePaciente);
     }
 
     public Date getFechaNacimientoCliente() {
@@ -119,16 +116,14 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setFechaNacimientoCliente(Date fechaNacimientoCliente) {
         this.fechaNacimientoCliente = fechaNacimientoCliente;
-        System.out.println(fechaNacimientoCliente);
     }
 
-    public Eps getEpsCliente() {
+    public String getEpsCliente() {
         return epsCliente;
     }
 
-    public void setEpsCliente(Eps epsCliente) {
+    public void setEpsCliente(String epsCliente) {
         this.epsCliente = epsCliente;
-        System.out.println(epsCliente);
     }
     
     
@@ -138,7 +133,6 @@ public class RegistroConsultaBean implements Serializable {
     
     public void setIdPaciente(int idPaciente){
         this.idPaciente = idPaciente;
-        System.out.println(idPaciente);
     }
     
     
@@ -147,11 +141,24 @@ public class RegistroConsultaBean implements Serializable {
     }
     
     public void registrarPaciente() throws ExcepcionServiciosPacientes{
-        servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, new Eps("Compensar","12")));
+        int i = 0;
+        while (!getEpsRegistradas().get(i).getNombre().equals(epsCliente)){
+            i++;
+        }
+        servicepacientes.registrarNuevoPaciente(new Paciente(idPaciente, tipoIdPaciente, nombrePaciente, fechaNacimientoCliente, getEpsRegistradas().get(i)));
+        System.out.println(pacienteActual.getId());
     }
     
     public void registrarCitaPaciente() throws ExcepcionServiciosPacientes{
         servicepacientes.agregarConsultaPaciente(pacienteActual.getId(), pacienteActual.getTipoId(), new Consulta(fechaYHoraNueva, resumenCitaNueva, costoNuevo ));
+    }
+    
+    public String irARegistroDeConsultas(){
+        return "registroconsultas.xhtml";
+    }
+    
+    public String irARegistroDePacientes(){
+        return "registropacientes.xhtml";
     }
 
     public void showMessage(String estado, String mensaje) {

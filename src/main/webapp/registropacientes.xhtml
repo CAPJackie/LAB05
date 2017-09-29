@@ -25,11 +25,12 @@
                 
                 <p:outputLabel for="console" value="EPS:" />
                 <p:selectOneMenu id="console" value="#{HistorialPacientes.epsCliente}" style="width:125px">
-                    <f:selectItem itemLabel="Seleccione una EPS" itemValue="" />
-                    <f:selectItems value ="#{HistorialPacientes.epsRegistradas}" var="epsCliente" itemValue="#{epsCliente.nombre}" itemLabel="#{epsCliente.nombre}"/>
+                    <f:selectItems value ="#{HistorialPacientes.servicepacientes.obtenerEPSsRegistradas()}" var="epsCliente" itemValue="#{epsCliente.nombre}" itemLabel="#{epsCliente.nombre}"/>
                 </p:selectOneMenu>
                 
-                <p:commandButton value="Enviar" id="nonAjax" actionListener="#{HistorialPacientes.registrarPaciente()}" ajax="false" update="Display" />
+                <p:commandButton value="Enviar" id="nonAjax" actionListener="#{HistorialPacientes.registrarPaciente()}" ajax="false" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
                 
                 
                 
@@ -38,7 +39,7 @@
             <h:form id="form">
                 <p:dataTable id="listadoC" var="paciente" value="#{HistorialPacientes.servicepacientes.consultarPacientes()}" selection="#{HistorialPacientes.pacienteActual}" rowKey="#{paciente.id}">
                 <f:facet name="header">
-                    RadioButton
+                    Listado de pacientes
                 </f:facet>
                 <p:column selectionMode="single" style="width:16px;text-align:center"/>
                 <p:column headerText="Id">
@@ -50,13 +51,11 @@
                 <p:column headerText="Nombre">
                     <h:outputText value="#{paciente.nombre}" />
                 </p:column>
-                <p:outputLabel for="german" value="German:" />
-                <p:calendar id="german" value="#{calendarView.date5}" locale="de" navigator="true" pattern="yyyy-MMM-dd" />
                 <p:column headerText="Eps">
                     <h:outputText value="#{paciente.eps.nombre}" />
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton process="listadoC" value="Enviar" id="nonAjax" actionListener="#{HistorialPacientes.registrarPaciente()}" ajax="false" update="form" />
+                    <p:commandButton process="listadoC" value="Enviar" id="nonAjax" action="#{HistorialPacientes.irARegistroDeConsultas()}" ajax="false" />
                 </f:facet>
                 </p:dataTable>
             </h:form>
