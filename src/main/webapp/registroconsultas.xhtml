@@ -26,7 +26,7 @@
             </p:layoutUnit>
             
             
-            
+            <h:form>
             <p:layoutUnit position="center" resizable="true" size="800" minSize="200" maxSize="1000">
                 <h:outputText value="REGISTRO DE UNA NUEVA CITA" style="font-weight:bold"  />
                 <h:panelGrid columns="2" cellpadding="10">
@@ -37,12 +37,12 @@
                 <h:outputLabel for="prefix" value="Precio: " />
                 <p:spinner id="prefix" value="#{HistorialPacientes.costoNuevo}" prefix="$" min="0"  />         
                 </h:panelGrid>
-                <h:form>
-                    <p:growl id="growl" life="2000" />
-                    <p:commandButton value="Inscribir Cita" id="ajax" update="growl" actionListener="#{HistorialPacientes.registrarConsultaAPaciente()}" styleClass="ui-priority-primary" />
- 
-                </h:form>
+                <p:commandButton value="Registrar Cita" id="nonAjax" actionListener="#{HistorialPacientes.registrarConsultaAPaciente()}" update="@all" ajax="false" />
+                
             </p:layoutUnit>
+            </h:form>
+            
+            
     </p:layout>
     </h:body>
 
