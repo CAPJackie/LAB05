@@ -49,7 +49,8 @@ public class RegistroConsultaBean implements Serializable {
         return servicepacientes;
     }
     
-    public RegistroConsultaBean() throws ExcepcionServiciosPacientes{
+    public RegistroConsultaBean(){
+        
     }
 
     
@@ -71,6 +72,7 @@ public class RegistroConsultaBean implements Serializable {
     }
 
     public void setCostoNuevo(long costoNuevo) {
+        System.out.print("CAMBIE COSTO A");
         this.costoNuevo = costoNuevo;
     }
     
@@ -149,7 +151,7 @@ public class RegistroConsultaBean implements Serializable {
         System.out.println(pacienteActual.getId());
     }
     
-    public void registrarCitaPaciente() throws ExcepcionServiciosPacientes{
+    public void registrarConsultaAPaciente() throws ExcepcionServiciosPacientes{
         servicepacientes.agregarConsultaPaciente(pacienteActual.getId(), pacienteActual.getTipoId(), new Consulta(fechaYHoraNueva, resumenCitaNueva, costoNuevo ));
     }
     
