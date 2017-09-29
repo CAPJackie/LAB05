@@ -41,6 +41,7 @@ import static org.junit.Assert.*;
  *      CE5: Error en la persistencia al momento de registrar un nuevo paciente.
  *           Resultado esperado: ExcepcionOperacionConPaciente
  * 
+ * 
  *  
  * Condiciones de frontera:
  * 
@@ -62,15 +63,47 @@ public class ServiciosPacientesTest {
     }
     
     @Test
+    public void deberiaConsultarUnPacienteExistente() throws ExcepcionServiciosPacientes{
+        ServiciosPacientes servPac = new ServiciosPacientesMock();
+        Paciente pac1 = new Paciente();
+        pac1.setId(10203040);
+        pac1.setTipoId("CC");
+        servPac.registrarNuevoPaciente(pac1);
+        assertEquals(pac1, servPac.consultarPaciente(10203040, "CC"));
+        
+    }
+    @Test
+    public void noDeberiaConsultarUnPacienteSiNoExiste(){
+        ServiciosPacientes servPac = new ServiciosPacientesMock();
+        try{
+            servPac.consultarPaciente(499, "CC");
+            fail("Ha fallado la prueba");
+        }catch(ExcepcionServiciosPacientes e){
+            assertEquals("Paciente 499 no esta registrado",e.getMessage());
+        }
+    }
+    
+    @Test
+    public void noDeberiaAgregarUnaConsultaCuandoElPacienteNoExiste() throws ExcepcionServiciosPacientes{
+        ServiciosPacientes servPac = new ServiciosPacientesMock();
+        try{
+            servPac.agregarConsultaPaciente(10000, "CC", new Consulta(new Date("2017/09/21 12:22 PM"), "Chequeo general", 23000 ));
+            fail("Ha fallado la prueba");
+        }catch(ExcepcionServiciosPacientes e){
+            assertEquals("Paciente 10000 no esta registrado",e.getMessage());
+        }
+    }
+    
+    
+    @Test
     public void deberiaAgregarUnaConsultaAlPaciente() throws ExcepcionServiciosPacientes{
         Paciente pac1 = new Paciente();
         pac1.setId(10203040);
-        pac1.setTipoId("Cedula de ciudadania");
+        pac1.setTipoId("CC");
         Consulta consulta = new Consulta(new Date("2017/09/21 12:22 PM"), "Chequeo general", 23000 );
         ServiciosPacientes servPac = new ServiciosPacientesMock();
         servPac.registrarNuevoPaciente(pac1);
-        servPac.agregarConsultaPaciente(10203040, "Cedula de ciudadania", consulta);
-        
+        servPac.agregarConsultaPaciente(10203040, "CC", consulta);       
         assertEquals(1, pac1.getConsultas().size());
     }
     
